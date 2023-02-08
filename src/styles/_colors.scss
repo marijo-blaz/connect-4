@@ -1,0 +1,14 @@
+:root,
+[data-theme="light"] {
+    --brand-primary-default: #008080;
+
+    --brand-secondary-default: #383838;
+
+    --text-primary: #333f48;
+
+    --white: #ffffff;
+    --background-default: #fafafa;
+}
+[data-theme="dark"] {
+    --color: white;
+}
