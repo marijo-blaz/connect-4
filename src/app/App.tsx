@@ -1,5 +1,10 @@
 import { FC } from "react";
+import { Game } from "./connectFour";
 
 export const App: FC = () => {
-    return <p>Hello</p>;
+    return (
+        <main>
+            <Game />
+        </main>
+    );
 };
