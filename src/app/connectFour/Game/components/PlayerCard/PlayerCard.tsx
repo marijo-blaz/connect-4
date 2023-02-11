@@ -8,18 +8,23 @@ interface IPlayerCard extends IPlayer {
 }
 
 const PlayerCard: FC<IPlayerCard> = ({ name, color, id, isPlaying, score }) => {
+    const colorVariants = {
+        red: "fill-red",
+        orange: "fill-orange",
+    };
+
     return (
         <div
             className={twMerge(
-                "bg-white rounded-xl h-[128px] min-w-[102px] flex justify-center items-center border-4 border-black shadow-[0_10px_0_rgba(0,0,0)] relative",
-                !isPlaying && "shadow-[0_0_0_rgba(0,0,0)]" && "opacity-25"
+                "bg-white rounded-xl h-[128px] min-w-[102px] flex justify-center transition-all duration-500 items-center border-4 border-black shadow-[0_10px_0_rgba(0,0,0)] relative",
+                !isPlaying && "shadow-[0_0_0_rgba(0,0,0)] opacity-75"
             )}
         >
             <PlayerIcon
                 className={twMerge(
                     "w-12 h-12 absolute -top-6 ",
                     id % 2 === 1 && "-scale-x-100",
-                    "fill-" + color
+                    colorVariants[color]
                 )}
             />
             <div className="flex items-center flex-col">
