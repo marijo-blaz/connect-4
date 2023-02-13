@@ -1,9 +1,7 @@
-import IGrid from "app/connectFour/shared/interfaces/IGrid";
-import IPlayer from "app/connectFour/shared/interfaces/IPlayer";
-import IToken from "app/connectFour/shared/interfaces/IToken";
+import { IGridColumn, IPlayer, IToken } from "app/shared/interfaces";
 
 const getUpdatedBoard = (
-    grid: IGrid[],
+    grid: IGridColumn[],
     selectedColumnId: number,
     players: IPlayer[],
     playerId: number

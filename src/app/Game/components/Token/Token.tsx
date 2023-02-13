@@ -1,6 +1,4 @@
-import tokenColorEnum from "app/connectFour/shared/enums/TokenColorEnum";
-import IPlayer from "app/connectFour/shared/interfaces/IPlayer";
-import IToken from "app/connectFour/shared/interfaces/IToken";
+import { IPlayer, IToken } from "app/shared/interfaces";
 import { FC } from "react";
 import { twMerge } from "tailwind-merge";
 

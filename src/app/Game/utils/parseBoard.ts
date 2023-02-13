@@ -1,6 +1,4 @@
-import IGrid from "app/connectFour/shared/interfaces/IGrid";
-import IPlayer from "app/connectFour/shared/interfaces/IPlayer";
-import IToken from "app/connectFour/shared/interfaces/IToken";
+import { IGridColumn, IPlayer, IToken } from "app/shared/interfaces";
 import INITIAL_GRID_DATA from "../constants/InitialGridData";
 import getWinnerFromArray from "./getWinnerFromArray";
 
@@ -8,7 +6,7 @@ const GRID_WIDTH = INITIAL_GRID_DATA.length;
 const GRID_HEIGHT = INITIAL_GRID_DATA[0].rows.length;
 const NUM_OF_DIAGONALS = GRID_WIDTH + GRID_HEIGHT - 1;
 
-const checkBoardColumns = (items: IGrid[]) => {
+const checkBoardColumns = (items: IGridColumn[]) => {
     //Check columns and return player
     let output: IPlayer | undefined;
 
@@ -22,7 +20,7 @@ const checkBoardColumns = (items: IGrid[]) => {
     return output;
 };
 
-const checkBoardRows = (items: IGrid[]) => {
+const checkBoardRows = (items: IGridColumn[]) => {
     //Check rows and return player
     let output: IPlayer | undefined;
 
@@ -47,7 +45,7 @@ const checkBoardRows = (items: IGrid[]) => {
     return output;
 };
 
-const checkBoardDiagonalRowsLeftToRight = (items: IGrid[]) => {
+const checkBoardDiagonalRowsLeftToRight = (items: IGridColumn[]) => {
     //Check ↘️ and return player
     let output: IPlayer | undefined;
     const NUM_OF_DIAGONALS = GRID_WIDTH + GRID_HEIGHT - 1;
@@ -76,7 +74,7 @@ const checkBoardDiagonalRowsLeftToRight = (items: IGrid[]) => {
     return output;
 };
 
-const checkBoardDiagonalRowsRightToLeft = (items: IGrid[]) => {
+const checkBoardDiagonalRowsRightToLeft = (items: IGridColumn[]) => {
     //Check ↗️ diagonals and return player
     let output: IPlayer | undefined;
 
@@ -103,7 +101,7 @@ const checkBoardDiagonalRowsRightToLeft = (items: IGrid[]) => {
     return output;
 };
 
-const parseBoard = (items: IGrid[]): IPlayer | undefined => {
+const parseBoard = (items: IGridColumn[]): IPlayer | undefined => {
     return (
         checkBoardColumns(items) ||
         checkBoardRows(items) ||

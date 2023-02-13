@@ -1,37 +1,51 @@
 import { FC, useEffect, useState } from "react";
 import { ReactComponent as PlayerTurn } from "assets/layout/player_turn.svg";
-import IPlayer from "app/connectFour/shared/interfaces/IPlayer";
 import { twMerge } from "tailwind-merge";
 import { useInterval } from "usehooks-ts";
+import { IPlayer } from "app/shared/interfaces";
+import useGameContext from "app/Game/hooks/useGameContext";
+
+const GAME_DELAY_IN_MS = 1000;
+const TURN_TIME_IN_SECONDS = 30;
 
 interface IPlayerCard {
     player: IPlayer;
-    winner: IPlayer | undefined;
-    onUpdateScore: (player: IPlayer, score: number) => void;
-    isPlaying: boolean;
 }
 
-const TurnCard: FC<IPlayerCard> = ({
-    player,
-    winner,
-    onUpdateScore,
-    isPlaying,
-}) => {
-    const { color, name, id } = player;
+const TurnCard: FC<IPlayerCard> = ({ player }) => {
+    const { players, updatePlayers, isFinished, winner } = useGameContext();
+    const currentPlayer = players.find((p) => p.isNext === true);
+    const { color, name, id } = currentPlayer!;
 
-    const [seconds, setSeconds] = useState<number>(30);
-    const [delayInMilliseconds] = useState<number>(1000);
+    const [delayInMilliseconds] = useState<number>(GAME_DELAY_IN_MS);
+    const [seconds, setSeconds] = useState<number>(TURN_TIME_IN_SECONDS);
+
+    const handleUpdatePlayerScore = (
+        playerToUpdate: IPlayer,
+        score: number
+    ) => {
+        const updatedPlayer = players.map((player) => {
+            if (player !== playerToUpdate) {
+                return {
+                    ...player,
+                    score: (player.score = player.score + score),
+                };
+            }
+            return player;
+        });
+
+        updatePlayers(updatedPlayer);
+    };
 
     useEffect(() => {
         setSeconds(30);
-        if (isPlaying) onUpdateScore(player, seconds);
-    }, [id]);
+    }, [currentPlayer]);
 
     useInterval(
         () => {
             if (seconds > 0) setSeconds(seconds - 1);
         },
-        isPlaying ? delayInMilliseconds : null
+        !isFinished ? delayInMilliseconds : null
     );
 
     const colorVariants = {

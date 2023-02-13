@@ -1,6 +1,6 @@
-import IGrid from "app/connectFour/shared/interfaces/IGrid";
+import { IGridColumn } from "app/shared/interfaces";
 
-const INITIAL_GRID_DATA = Array.from<undefined, IGrid>(
+const INITIAL_GRID_DATA = Array.from<undefined, IGridColumn>(
     { length: 7 },
     (_, i) => {
         return {

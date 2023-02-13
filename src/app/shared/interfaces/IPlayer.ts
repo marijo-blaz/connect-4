@@ -5,6 +5,7 @@ interface IPlayer {
     name: string;
     color: tokenColorEnum;
     score: number;
+    isNext: boolean;
 }
 
 export default IPlayer;

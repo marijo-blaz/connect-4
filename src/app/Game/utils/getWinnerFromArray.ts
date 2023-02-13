@@ -1,5 +1,4 @@
-import IPlayer from "app/connectFour/shared/interfaces/IPlayer";
-import IToken from "app/connectFour/shared/interfaces/IToken";
+import { IPlayer, IToken } from "app/shared/interfaces";
 
 const getWinnerFromArray = (inputArray: IToken[]): IPlayer | undefined => {
     let sum = 0;

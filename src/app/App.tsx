@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Game } from "./connectFour";
+import { Game } from "./Game";
 
 export const App: FC = () => {
     return (

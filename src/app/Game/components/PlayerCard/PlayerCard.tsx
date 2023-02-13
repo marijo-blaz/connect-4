@@ -1,13 +1,9 @@
 import { FC } from "react";
 import { ReactComponent as PlayerIcon } from "assets/icons/player_icon.svg";
-import IPlayer from "app/connectFour/shared/interfaces/IPlayer";
 import { twMerge } from "tailwind-merge";
+import { IPlayer } from "app/shared/interfaces";
 
-interface IPlayerCard extends IPlayer {
-    isPlaying: boolean;
-}
-
-const PlayerCard: FC<IPlayerCard> = ({ name, color, id, isPlaying, score }) => {
+const PlayerCard: FC<IPlayer> = ({ name, color, id, score, isNext }) => {
     const colorVariants = {
         red: "fill-red",
         orange: "fill-orange",
@@ -17,7 +13,7 @@ const PlayerCard: FC<IPlayerCard> = ({ name, color, id, isPlaying, score }) => {
         <div
             className={twMerge(
                 "bg-white rounded-xl h-[128px] min-w-[102px] flex justify-center transition-all duration-500 items-center border-4 border-black shadow-[0_10px_0_rgba(0,0,0)] relative",
-                !isPlaying && "shadow-[0_0_0_rgba(0,0,0)] opacity-75"
+                !isNext && "shadow-[0_0_0_rgba(0,0,0)] opacity-75"
             )}
         >
             <PlayerIcon

@@ -1,8 +1,8 @@
 import IToken from "./IToken";
 
-interface IGrid {
+interface IGridColumn {
     id: number;
     rows: IToken[];
 }
 
-export default IGrid;
+export default IGridColumn;

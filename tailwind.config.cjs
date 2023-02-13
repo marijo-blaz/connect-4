@@ -12,12 +12,16 @@ module.exports = {
             },
             keyframes: {
                 moveDown: {
-                    "0%": { transform: "translateY(-380px)" },
+                    "0%": { transform: "translateY(-380px) scale(1,1)" },
+                    "70%": { transform: "translateY(0px)" },
+                    "72%": { transform: "translateY(-15px) scale(0.9,1)" },
+                    "90%": { transform: "translateY(0px)" },
+                    "92%": { transform: "translateY(-5px) scale(0.9,1)" },
                     "100%": { transform: "translateY(0px)" },
                 },
             },
             animation: {
-                moveDown: "moveDown 0.75s cubic-bezier(.75,0,.73,1.25)",
+                moveDown: "moveDown 0.6s cubic-bezier(.73,-0.01,.49,.99)",
             },
         },
     },
