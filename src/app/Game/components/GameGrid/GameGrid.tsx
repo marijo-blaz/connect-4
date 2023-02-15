@@ -7,6 +7,7 @@ import getUpdatedBoard from "app/Game/utils/updateBoard";
 import parseBoard from "app/Game/utils/parseBoard";
 import useGameContext from "app/Game/hooks/useGameContext";
 import { useInterval } from "usehooks-ts";
+import { isEqual } from "lodash";
 
 const GameGrid: FC = () => {
     const {
@@ -23,8 +24,6 @@ const GameGrid: FC = () => {
     const currentPlayer = players.find((p) => p.isNext === true);
 
     const handleClickColumn = (selectedColumnId: number) => {
-        console.log(isFinished);
-
         if (isFinished) {
             restart();
             return;
@@ -36,6 +35,10 @@ const GameGrid: FC = () => {
             players,
             currentPlayer?.id || 0
         );
+
+        const isBoardEqual = isEqual(newGrid, grid);
+
+        if (isBoardEqual) return;
 
         const gameWinner = parseBoard(newGrid);
         updateGrid(newGrid);
@@ -69,43 +72,43 @@ const GameGrid: FC = () => {
         !isFinished ? 1000 : null
     );
 
-    console.log("RERENDER");
-
     return (
-        <div className="h-[550px] w-[600px] grid place-items-center my-16 relative">
-            <div className="w-full h-full z-30 px-[4%]">
-                <div className="grid columns-1 grid-flow-col gap-[0px] h-full w-full">
-                    {grid.map(({ id }) => (
-                        <div
-                            key={id}
-                            className="h-full w-full cursor-pointer"
-                            onClick={() => handleClickColumn(id)}
-                        />
-                    ))}
+        <div className="absolute top-1/2 -translate-y-1/2">
+            <div className="min-h-[325px] md:min-h-[550px] min-w-[375px] md:min-w-[600px] grid place-items-center my-8 md:my-16 relative">
+                <div className="w-full h-full z-30 px-[4%]">
+                    <div className="grid columns-1 grid-flow-col gap-[0px] h-full w-full">
+                        {grid.map(({ id }) => (
+                            <div
+                                key={id}
+                                className="h-full w-full cursor-pointer"
+                                onClick={() => handleClickColumn(id)}
+                            />
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <BoardFront className="z-20 h-full w-full absolute" />
-            <div className="w-full h-full z-10 px-[4%] pb-[11%] pt-[2%]  absolute">
-                <div className="grid columns-1 grid-flow-col h-full w-full">
-                    {grid.map(({ rows }, index) => (
-                        <div
-                            key={index}
-                            className=" h-full w-full grid grid-flow-row place-items-center"
-                        >
-                            {rows.map(({ isPopulated, player }, index) => (
-                                <Token
-                                    isPopulated={isPopulated}
-                                    color={player?.color}
-                                    key={index}
-                                />
-                            ))}
-                        </div>
-                    ))}
+                <BoardFront className="z-20 h-full w-full absolute" />
+                <div className="w-full h-full z-10 px-[7%] md:px-[4%] pb-[11%] md:pt-[2%] pt-[3%] absolute">
+                    <div className="grid columns-1 grid-flow-col h-full w-full">
+                        {grid.map(({ rows }, index) => (
+                            <div
+                                key={index}
+                                className=" h-full w-full grid grid-flow-row place-items-center"
+                            >
+                                {rows.map(({ isPopulated, player }, index) => (
+                                    <Token
+                                        isPopulated={isPopulated}
+                                        color={player?.color}
+                                        key={index}
+                                    />
+                                ))}
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <BoardBack className="h-full w-full absolute" />
-            <div className="z-20 absolute -bottom-[100px]">
-                <TurnCard player={currentPlayer!} />
+                <BoardBack className="h-full w-full absolute" />
+                <div className="z-20 absolute -bottom-[110px] md:-bottom-[100px]">
+                    <TurnCard />
+                </div>
             </div>
         </div>
     );

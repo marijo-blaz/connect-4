@@ -4,7 +4,6 @@ interface IPlayer {
     id: number;
     name: string;
     color: tokenColorEnum;
-    score: number;
     isNext: boolean;
 }
 

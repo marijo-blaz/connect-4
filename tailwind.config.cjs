@@ -3,6 +3,9 @@ module.exports = {
     content: ["./index.html", "./src/**/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            fontFamily: {
+                sans: ["Varela Round"],
+            },
             colors: {
                 purple: "#7945FF",
                 darkPurple: "#5C2DD5",
