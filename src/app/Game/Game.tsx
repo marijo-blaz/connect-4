@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { GameGrid } from "./components/GameGrid";
 import { GameProvider } from "./components/GameProvider";
 import { GameLayout } from "./components/GameLayout";

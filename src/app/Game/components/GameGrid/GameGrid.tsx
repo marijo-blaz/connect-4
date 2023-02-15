@@ -74,8 +74,8 @@ const GameGrid: FC = () => {
 
     return (
         <div className="absolute top-1/2 -translate-y-1/2">
-            <div className="min-h-[325px] md:min-h-[550px] min-w-[375px] md:min-w-[600px] grid place-items-center my-8 md:my-16 relative">
-                <div className="w-full h-full z-30 px-[4%]">
+            <div className="min-h-[300px] md:min-h-[550px] min-w-[350px] md:min-w-[600px] grid place-items-center my-8 md:my-16 relative">
+                <div className="w-full h-full z-30 px-[6%] md:px-[4%]">
                     <div className="grid columns-1 grid-flow-col gap-[0px] h-full w-full">
                         {grid.map(({ id }) => (
                             <div
@@ -87,7 +87,7 @@ const GameGrid: FC = () => {
                     </div>
                 </div>
                 <BoardFront className="z-20 h-full w-full absolute" />
-                <div className="w-full h-full z-10 px-[7%] md:px-[4%] pb-[11%] md:pt-[2%] pt-[3%] absolute">
+                <div className="w-full h-full z-10 px-[7.5%] md:px-[4%] pb-[11%] md:pt-[2%] pt-[3%] absolute">
                     <div className="grid columns-1 grid-flow-col h-full w-full">
                         {grid.map(({ rows }, index) => (
                             <div
